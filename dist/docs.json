@@ -1,0 +1,25 @@
+{
+  "api": {
+    "name": "CapacitorNetworkInfoPlugin",
+    "slug": "capacitornetworkinfoplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "getInfo",
+        "signature": "() => Promise<{ interfaceName: string; ipAddress: string; subnetMask: string; dnsServers: string; connectionMode: string; }>",
+        "parameters": [],
+        "returns": "Promise<{ interfaceName: string; ipAddress: string; subnetMask: string; dnsServers: string; connectionMode: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getinfo"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}

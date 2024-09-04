@@ -1,0 +1,1 @@
+{"version":3,"file":"definitions.js","sourceRoot":"","sources":["../../src/definitions.ts"],"names":[],"mappings":"","sourcesContent":["export interface CapacitorNetworkInfoPlugin {\n  getInfo(): Promise<{\n    interfaceName: string;\n    ipAddress: string;\n    subnetMask: string;\n    dnsServers: string;\n    connectionMode: string;\n  }>;\n}\n"]}
