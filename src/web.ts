@@ -6,6 +6,22 @@ export class CapacitorNetworkInfoWeb
   extends WebPlugin
   implements CapacitorNetworkInfoPlugin
 {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  getMacAddressLegacy({
+    interfaceName: interfaceName,
+  }: {
+    interfaceName: string;
+  }): Promise<{ macAddress: string; success: boolean }> {
+    console.log('CapacitorNetworkInfo not available on web');
+    return new Promise(resolve =>
+      resolve({
+        macAddress: '',
+        success: false,
+      }),
+    );
+  }
+
   getInfo(): Promise<{
     interfaceName: string;
     ipAddress: string;
@@ -13,6 +29,15 @@ export class CapacitorNetworkInfoWeb
     dnsServers: string;
     connectionMode: string;
   }> {
-    throw new Error('Method not implemented.');
+    console.log('CapacitorNetworkInfo not available on web');
+    return new Promise(resolve =>
+      resolve({
+        interfaceName: '',
+        ipAddress: '',
+        subnetMask: '',
+        dnsServers: '',
+        connectionMode: '',
+      }),
+    );
   }
 }

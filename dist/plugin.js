@@ -6,8 +6,24 @@ var capacitorCapacitorNetworkInfo = (function (exports, core) {
     });
 
     class CapacitorNetworkInfoWeb extends core.WebPlugin {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        getMacAddressLegacy({ interfaceName: interfaceName, }) {
+            console.log('CapacitorNetworkInfo not available on web');
+            return new Promise(resolve => resolve({
+                macAddress: '',
+                success: false,
+            }));
+        }
         getInfo() {
-            throw new Error('Method not implemented.');
+            console.log('CapacitorNetworkInfo not available on web');
+            return new Promise(resolve => resolve({
+                interfaceName: '',
+                ipAddress: '',
+                subnetMask: '',
+                dnsServers: '',
+                connectionMode: '',
+            }));
         }
     }
 

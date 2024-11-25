@@ -18,6 +18,9 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.util.List;
@@ -87,12 +90,45 @@ public class CapacitorNetworkInfoPlugin extends Plugin {
         }
     }
 
+    @PluginMethod
+    public void getMacAddressLegacy(PluginCall call) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { // Android 11 (R) and above
+            JSObject ret = new JSObject();
+            ret.put("macAddress", null);
+            ret.put("success", false);
+            call.reject("Method not supported on Android 11 and above.", ret);
+            return;
+        }
+
+        String networkInterface = call.getString("interfaceName");
+        String macAddress = getMacAddress(networkInterface);
+
+        if (macAddress != null) {
+            JSObject ret = new JSObject();
+            ret.put("macAddress", macAddress);
+            ret.put("success", true);
+            call.resolve(ret);
+        } else {
+            JSObject ret = new JSObject();
+            ret.put("success", false);
+            call.reject("Failed to retrieve MAC address.", ret);
+        }
+    }
+
+    private String getMacAddress(String interfaceName) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("/sys/class/net/" + interfaceName + "/address"));
+            String macAddress = reader.readLine();
+            reader.close();
+            return macAddress;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private String calculateSubnetMask(int prefixLength) {
         int mask = 0xffffffff << (32 - prefixLength);
-        return String.format("%d.%d.%d.%d",
-                (mask >> 24 & 0xff),
-                (mask >> 16 & 0xff),
-                (mask >> 8 & 0xff),
-                (mask & 0xff));
+        return String.format("%d.%d.%d.%d", (mask >> 24 & 0xff), (mask >> 16 & 0xff), (mask >> 8 & 0xff), (mask & 0xff));
     }
 }

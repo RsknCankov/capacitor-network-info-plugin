@@ -6,4 +6,10 @@ export interface CapacitorNetworkInfoPlugin {
         dnsServers: string;
         connectionMode: string;
     }>;
+    getMacAddressLegacy({ interfaceName: interfaceName, }: {
+        interfaceName: string;
+    }): Promise<{
+        macAddress: string;
+        success: boolean;
+    }>;
 }

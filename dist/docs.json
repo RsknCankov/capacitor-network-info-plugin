@@ -14,6 +14,22 @@
         "docs": "",
         "complexTypes": [],
         "slug": "getinfo"
+      },
+      {
+        "name": "getMacAddressLegacy",
+        "signature": "({ interfaceName: interfaceName, }: { interfaceName: string; }) => Promise<{ macAddress: string; success: boolean; }>",
+        "parameters": [
+          {
+            "name": "__0",
+            "docs": "",
+            "type": "{ interfaceName: string; }"
+          }
+        ],
+        "returns": "Promise<{ macAddress: string; success: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getmacaddresslegacy"
       }
     ],
     "properties": []

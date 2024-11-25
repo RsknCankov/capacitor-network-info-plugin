@@ -14,6 +14,7 @@ npx cap sync
 <docgen-index>
 
 * [`getInfo()`](#getinfo)
+* [`getMacAddressLegacy(...)`](#getmacaddresslegacy)
 
 </docgen-index>
 
@@ -27,6 +28,21 @@ getInfo() => Promise<{ interfaceName: string; ipAddress: string; subnetMask: str
 ```
 
 **Returns:** <code>Promise&lt;{ interfaceName: string; ipAddress: string; subnetMask: string; dnsServers: string; connectionMode: string; }&gt;</code>
+
+--------------------
+
+
+### getMacAddressLegacy(...)
+
+```typescript
+getMacAddressLegacy({ interfaceName: interfaceName, }: { interfaceName: string; }) => Promise<{ macAddress: string; success: boolean; }>
+```
+
+| Param     | Type                                    |
+| --------- | --------------------------------------- |
+| **`__0`** | <code>{ interfaceName: string; }</code> |
+
+**Returns:** <code>Promise&lt;{ macAddress: string; success: boolean; }&gt;</code>
 
 --------------------
 
